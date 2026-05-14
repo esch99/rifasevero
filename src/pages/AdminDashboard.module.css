@@ -84,6 +84,15 @@
   border-radius: var(--radius-sm);
 }
 
+.formError {
+  font-size: 0.85rem;
+  color: var(--red);
+  padding: 0.6rem 0.8rem;
+  background: var(--red-dim);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+}
+
 /* List */
 .list {
   display: flex;

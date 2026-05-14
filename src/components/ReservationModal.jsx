@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react'
 import styles from './ReservationModal.module.css'
 
+function copyFallback(text) {
+  const el = document.createElement('textarea')
+  el.value = text
+  el.style.cssText = 'position:fixed;opacity:0;top:0;left:0'
+  document.body.appendChild(el)
+  el.focus()
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
+
 export default function ReservationModal({ numero, step, rifa, error, saving, onConfirm, onClose }) {
   const [nome, setNome] = useState('')
   const [telefone, setTelefone] = useState('')
@@ -20,7 +31,11 @@ export default function ReservationModal({ numero, step, rifa, error, saving, on
 
   const copyPix = () => {
     if (!rifa.chavePix) return
-    navigator.clipboard.writeText(rifa.chavePix)
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(rifa.chavePix).catch(() => copyFallback(rifa.chavePix))
+    } else {
+      copyFallback(rifa.chavePix)
+    }
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
   }

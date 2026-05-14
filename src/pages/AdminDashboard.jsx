@@ -101,8 +101,16 @@ function CreateRifaForm({ onSubmit, saving }) {
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
+  const [formError, setFormError] = useState('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    setFormError('')
+    const inicio = Number(form.numeroInicio)
+    const fim = Number(form.numeroFim)
+    if (inicio < 1) return setFormError('Número inicial deve ser maior que 0.')
+    if (fim < inicio) return setFormError('Número final deve ser maior que o inicial.')
+    if (fim - inicio + 1 > 1000) return setFormError('Máximo de 1000 números por rifa.')
     onSubmit(form)
   }
 
@@ -163,9 +171,11 @@ function CreateRifaForm({ onSubmit, saving }) {
         </label>
       </div>
 
-      {total > 0 && (
+      {total > 0 && !formError && (
         <p className={styles.hint}>{total} número{total !== 1 ? 's' : ''} serão criados</p>
       )}
+
+      {formError && <p className={styles.formError}>{formError}</p>}
 
       <button type="submit" className={styles.btnPrimary} disabled={saving}>
         {saving ? 'Criando…' : 'Criar rifa'}
