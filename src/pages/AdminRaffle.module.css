@@ -43,6 +43,28 @@
   font-size: 0.82rem;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btnDraw {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent);
+  padding: 0 1rem;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.btnDraw:active { opacity: 0.85; }
+@media (hover: hover) { .btnDraw:hover { opacity: 0.88; } }
+
 .viewBtn {
   font-size: 0.82rem;
   font-weight: 600;

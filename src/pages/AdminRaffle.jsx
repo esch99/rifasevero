@@ -7,6 +7,8 @@ import {
   marcarPago,
   cancelarReserva,
 } from '../firebase/firestore'
+import DrawModal from '../components/DrawModal'
+import WheelDrawModal from '../components/WheelDrawModal'
 import styles from './AdminRaffle.module.css'
 
 const STATUS_LABEL = {
@@ -25,6 +27,7 @@ export default function AdminRaffle() {
   const [whatsapp, setWhatsapp] = useState('')
   const [savingConfig, setSavingConfig] = useState(false)
   const [configSaved, setConfigSaved] = useState(false)
+  const [showDraw, setShowDraw] = useState(false) // 'drum' | 'wheel' | false
 
   useEffect(() => {
     const unsub1 = subscribeRifa(id, (data) => {
@@ -70,9 +73,17 @@ export default function AdminRaffle() {
           <h1>{rifa.titulo}</h1>
           <p className={styles.sub}>R$ {Number(rifa.valorBilhete).toFixed(2).replace('.', ',')} · {rifa.numeroInicio}–{rifa.numeroFim}</p>
         </div>
-        <a href={`/rifa/${id}`} target="_blank" rel="noreferrer" className={styles.viewBtn}>
-          Ver rifa ↗
-        </a>
+        <div className={styles.headerActions}>
+          <button className={styles.btnDraw} onClick={() => setShowDraw('drum')}>
+            🎰 Tambor
+          </button>
+          <button className={styles.btnDraw} onClick={() => setShowDraw('wheel')}>
+            🎡 Roleta
+          </button>
+          <a href={`/rifa/${id}`} target="_blank" rel="noreferrer" className={styles.viewBtn}>
+            Ver ↗
+          </a>
+        </div>
       </header>
 
       {/* Stats */}
@@ -147,6 +158,21 @@ export default function AdminRaffle() {
           </div>
         )}
       </div>
+
+      {showDraw === 'drum' && (
+        <DrawModal
+          numeros={numeros}
+          rifaTitulo={rifa.titulo}
+          onClose={() => setShowDraw(false)}
+        />
+      )}
+      {showDraw === 'wheel' && (
+        <WheelDrawModal
+          numeros={numeros}
+          rifaTitulo={rifa.titulo}
+          onClose={() => setShowDraw(false)}
+        />
+      )}
     </div>
   )
 }

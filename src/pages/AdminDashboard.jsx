@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/config'
-import { subscribeRifas, createRifa, finalizarRifa } from '../firebase/firestore'
+import { subscribeRifas, createRifa, finalizarRifa, deletarRifa } from '../firebase/firestore'
 import styles from './AdminDashboard.module.css'
 
 export default function AdminDashboard() {
@@ -34,6 +34,11 @@ export default function AdminDashboard() {
   const handleFinalizar = async (id) => {
     if (!confirm('Finalizar esta rifa?')) return
     await finalizarRifa(id)
+  }
+
+  const handleDeletar = async (id, titulo) => {
+    if (!confirm(`Apagar a rifa "${titulo}" permanentemente? Isso não pode ser desfeito.`)) return
+    await deletarRifa(id)
   }
 
   return (
@@ -75,13 +80,13 @@ export default function AdminDashboard() {
                 Gerenciar
               </Link>
               {rifa.status === 'ativa' && (
-                <button
-                  onClick={() => handleFinalizar(rifa.id)}
-                  className={styles.btnDanger}
-                >
+                <button onClick={() => handleFinalizar(rifa.id)} className={styles.btnDanger}>
                   Finalizar
                 </button>
               )}
+              <button onClick={() => handleDeletar(rifa.id, rifa.titulo)} className={styles.btnDelete}>
+                🗑
+              </button>
             </div>
           </div>
         ))}

@@ -70,6 +70,12 @@ export async function finalizarRifa(rifaId) {
   await updateDoc(doc(db, 'rifas', rifaId), { status: 'finalizada' })
 }
 
+export async function deletarRifa(rifaId) {
+  const numerosSnap = await getDocs(collection(db, 'rifas', rifaId, 'numeros'))
+  await Promise.all(numerosSnap.docs.map((d) => deleteDoc(d.ref)))
+  await deleteDoc(doc(db, 'rifas', rifaId))
+}
+
 // ── Números ────────────────────────────────────────────
 
 export function subscribeNumeros(rifaId, callback) {
