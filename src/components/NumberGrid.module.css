@@ -1,0 +1,83 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 8px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1.5px solid transparent;
+  background: var(--surface);
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  min-width: 0;
+  transition: transform 0.1s, background 0.12s, border-color 0.12s, box-shadow 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* DISPONÍVEL */
+.cell[data-status="disponivel"] {
+  background: var(--green-dim);
+  border-color: rgba(34, 197, 94, 0.22);
+  color: var(--green);
+  cursor: pointer;
+}
+
+.cell[data-status="disponivel"]:active {
+  transform: scale(0.92);
+  background: rgba(34, 197, 94, 0.22);
+  box-shadow: 0 0 0 4px var(--green-glow);
+}
+
+@media (hover: hover) {
+  .cell[data-status="disponivel"]:hover {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 12px var(--green-glow);
+    transform: scale(1.04);
+  }
+}
+
+/* RESERVADO */
+.cell[data-status="reservado"] {
+  background: var(--yellow-dim);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: var(--yellow);
+  cursor: not-allowed;
+}
+
+/* AGUARDANDO PAGAMENTO */
+.cell[data-status="aguardando_pagamento"] {
+  background: var(--blue-dim);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: var(--blue);
+  cursor: not-allowed;
+}
+
+/* PAGO */
+.cell[data-status="pago"] {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text3);
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+    gap: 6px;
+  }
+  .cell {
+    font-size: 0.82rem;
+    min-height: 52px;
+  }
+}

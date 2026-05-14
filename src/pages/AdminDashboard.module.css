@@ -1,0 +1,211 @@
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.header h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.logout {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text2);
+  background: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 100px;
+  border: 1.5px solid var(--border2);
+  transition: border-color 0.15s, color 0.15s;
+  min-height: 40px;
+}
+
+.logout:active { border-color: var(--text2); color: var(--text); }
+@media (hover: hover) {
+  .logout:hover { border-color: var(--text2); color: var(--text); }
+}
+
+.toolbar {
+  margin-bottom: 1.25rem;
+}
+
+/* Create form */
+.form {
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form h2 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 440px) {
+  .row { grid-template-columns: 1fr; }
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--text2);
+  padding: 0.5rem 0.75rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+}
+
+/* List */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  min-height: 72px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text2);
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  padding: 0.15rem 0.55rem;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusBadge[data-status="ativa"] {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.statusBadge[data-status="finalizada"] {
+  background: var(--surface2);
+  color: var(--text2);
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btnPrimary {
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 1.1rem;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.15s;
+}
+
+.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnPrimary:not(:disabled):active { opacity: 0.85; }
+@media (hover: hover) {
+  .btnPrimary:not(:disabled):hover { opacity: 0.88; }
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  padding: 0 0.85rem;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btnSecondary:active { border-color: var(--text2); }
+@media (hover: hover) {
+  .btnSecondary:hover { border-color: var(--text2); }
+}
+
+.btnDanger {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--red);
+  background: none;
+  border: 1.5px solid rgba(239, 68, 68, 0.25);
+  padding: 0 0.85rem;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btnDanger:active { border-color: var(--red); }
+@media (hover: hover) {
+  .btnDanger:hover { border-color: var(--red); }
+}
+
+.empty {
+  color: var(--text2);
+  font-size: 0.875rem;
+  padding: 2rem 0;
+}

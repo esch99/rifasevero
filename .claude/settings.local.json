@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem c:\\\\rifa-app -Force | ForEach-Object { Copy-Item $_.FullName -Destination c:\\\\rifa-severo\\\\ -Recurse -Force }; ls c:\\\\rifa-severo)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)"
+    ]
+  }
+}
