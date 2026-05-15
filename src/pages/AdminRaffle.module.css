@@ -269,35 +269,38 @@
   text-overflow: ellipsis;
 }
 
+.rowMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
 .rowPhone {
   font-size: 0.78rem;
   color: var(--text2);
 }
 
-.rowStatus {
-  flex-shrink: 0;
-}
-
-.rowStatus span {
-  font-size: 0.68rem;
+.rowStatusBadge {
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.2rem 0.55rem;
+  padding: 0.18rem 0.5rem;
   border-radius: 100px;
 }
 
-.rowStatus span[data-status="reservado"] {
+.rowStatusBadge[data-status="reservado"] {
   background: var(--yellow-dim);
   color: var(--yellow);
 }
 
-.rowStatus span[data-status="aguardando_pagamento"] {
+.rowStatusBadge[data-status="aguardando_pagamento"] {
   background: var(--blue-dim);
   color: var(--blue);
 }
 
-.rowStatus span[data-status="pago"] {
+.rowStatusBadge[data-status="pago"] {
   background: var(--green-dim);
   color: var(--green);
 }

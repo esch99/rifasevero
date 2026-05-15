@@ -199,10 +199,12 @@ function ParticipantRow({ numero, rifaId, onPago, onCancelar }) {
       <div className={styles.rowNum}>#{numero.numero}</div>
       <div className={styles.rowInfo}>
         <span className={styles.rowName}>{numero.nome || '—'}</span>
-        <span className={styles.rowPhone}>{numero.telefone || '—'}</span>
-      </div>
-      <div className={styles.rowStatus}>
-        <span data-status={numero.status}>{STATUS_LABEL[numero.status]}</span>
+        <div className={styles.rowMeta}>
+          <span className={styles.rowPhone}>{numero.telefone || '—'}</span>
+          <span className={styles.rowStatusBadge} data-status={numero.status}>
+            {STATUS_LABEL[numero.status]}
+          </span>
+        </div>
       </div>
       <div className={styles.rowActions}>
         {numero.telefone && (
